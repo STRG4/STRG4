@@ -1,0 +1,39 @@
+@Override
+	public boolean onCommand(CommandSender cs, Command arg1, String arg2, String[] args) {
+		
+	if(!(cs instanceof Player)) {
+		Player p = (Player)cs;
+		if(p.hasPermission("system.food")) {
+			
+			if(args.length == 0) {
+				p.setFoodLevel(20);
+				
+			} else {
+				Player t = Bukkit.getPlayer(args[0]);
+				if(t!=null) {
+					
+					
+					if(t != p) {
+						
+						
+						
+					}else {
+						p.sendMessage("§cDu kannst auch /food nutzen");
+					}
+					
+				}else {
+					p.sendMessage("§cDer Spieler ist nicht online");
+				}
+			}
+		}else {
+			p.sendMessage("§cDu hast keine Rechte!");
+		}
+	}else {
+		cs.sendMessage("§cDer Befehl ist nur für Spieler");
+	}
+		
+		return true;
+	}
+	
+
+}
