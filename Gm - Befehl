@@ -1,0 +1,73 @@
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	Player p = (Player)	sender;
+	if(sender instanceof Player) {
+		if(p.hasPermission("system.gamemode")) {
+			if(args.length==1) {
+				if(args[0].equalsIgnoreCase("0")) {
+					p.setGameMode(GameMode.SURVIVAL);
+					p.sendMessage(Main.prefix + "§7Du bist nun im §a" + p.getGameMode());
+				}else if(args[0].equalsIgnoreCase("1")) {
+					p.setGameMode(GameMode.CREATIVE);
+					p.sendMessage(Main.prefix + "§7Du bist nun im §a" + p.getGameMode());
+					
+				}else if(args[0].equalsIgnoreCase("2")) {
+					p.setGameMode(GameMode.ADVENTURE);
+					p.sendMessage(Main.prefix + "§7 Du bist nun im §a" + p.getGameMode());
+					
+				}else if(args[0].equalsIgnoreCase("3")) {
+					p.setGameMode(GameMode.SPECTATOR);
+					p.sendMessage(Main.prefix + "§7Du bist nun im §a" + p.getGameMode());
+					
+				} else {
+					p.sendMessage(Main.prefix + "§cBenutze: /gm <0,1,2,3> §7 oder §c/gm <0,1,2,3> SpielerName");
+				}
+			}else if(args.length==2){
+				
+				try {
+					Player a = Bukkit.getPlayer(args[1]);
+					if(args[0].equalsIgnoreCase("0")) {
+						a.setGameMode(GameMode.SURVIVAL);
+						a.sendMessage(Main.prefix + "§7Du bist nun im §a" + p.getGameMode());
+						a.sendMessage(Main.prefix + "§7Der Spieler §a" + a.getName() + "§clist nun im" + a.getGameMode());
+						
+				   }else if(args[0].equalsIgnoreCase("1")) {
+					   a.setGameMode(GameMode.CREATIVE);
+						a.sendMessage(Main.prefix + "§7Du bist nun im §a" + p.getGameMode());
+						a.sendMessage(Main.prefix + "§7Der Spieler §a" + a.getName() + "§cist nun im" + a.getGameMode());
+						
+				   }else if(args[0].equalsIgnoreCase("2")) {
+					   a.setGameMode(GameMode.ADVENTURE);
+						a.sendMessage(Main.prefix + "§7Du bist nun im §a" + p.getGameMode());
+						a.sendMessage(Main.prefix + "§7Der Spieler §a" + a.getName() + "§b§list nun im " + a.getGameMode());
+						
+				   }else if(args[0].equalsIgnoreCase("3")) {
+					   a.setGameMode(GameMode.SPECTATOR);
+						a.sendMessage(Main.prefix + "§7Du bist nun im §a" + p.getGameMode());
+						a.sendMessage(Main.prefix + "§7Der Spieler §a" + a.getName() + "§b§list nun im" + a.getGameMode());
+				   }else if(args.length == 0 ||  args.length == 3) {
+						p.sendMessage(Main.prefix + "§cBenutze: /gm 1,2,3 oder /gm 1,2,3 SPIELERNAME");
+						
+				   }
+					
+				}catch (NullPointerException d) {
+					p.sendMessage(Main.prefix +  "§c Der Spieler wurde nicht gefunden!");
+					
+				}
+				
+			}else {
+				p.sendMessage(Main.prefix + "§cBenutze:  /gm 1,2,3 oder /gm 1,2,3 SPIELERNAME");
+
+			}
+		
+		}else {
+			p.sendMessage(Main.prefix+"§cDu hast keine Rechte!");
+		}
+		
+	}else {
+		sender.sendMessage(Main.nocons);
+		
+	}
+	return true;
+   }
+}
